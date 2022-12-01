@@ -11,10 +11,12 @@ using namespace std;
 void menu();
 void startGame();
 void instructions();
+void continueNextDay();
 void nextDay();
 int exit();
 int health = 16;
 int stamina = 16;
+int continueToNextDay;
 int day;
 int scenario;
 
@@ -24,6 +26,34 @@ int main(){
   return 0;
 }
 
+// Continuing to next day
+void continueNextDay () {
+  cout << "Continue to day " << day+1 << "?\n\n";
+  cout << "0 - Continue\n";
+  cout << "1 - Return to Main Menu\n\n";
+  
+  cin >> continueToNextDay;
+
+  switch (continueToNextDay) {
+    case 0: {
+      int health = health;
+      int stamina = stamina;
+      nextDay();
+      break;
+    }
+    case 1: {
+      menu();
+    }
+  }
+
+  while (day < 0 || day > 0) {
+    while (continueToNextDay < 0 || continueToNextDay > 1) {
+      cout << "\033[2J\033[0;0H";
+      cout << "Please type in a number between 0 and 1 to select an option\n\n";
+      continueNextDay();
+    }
+  }
+};
 // ------------------------------ Instructions ------------------------------
 void instructions () {
   cout << "\033[2J\033[0;0H";
@@ -62,12 +92,13 @@ void action_fightEnemies() {
   
   health = health - 4;
   
-  cout << "You fight the zombies...\n\n";
+  cout << "You fight the enemies...\n\n";
   cout << "...but they fight back!\n\n";
   cout << "You lose 4 health points before defeating the zombies.\n\n";
   cout << "After Scenario:\n\n";
   cout << "Health - " << health << endl;
   cout << "Stamina - " << stamina << endl << endl;
+  continueNextDay();
 }
 // Run Away Action
 void action_runAway() {
@@ -180,25 +211,8 @@ void startGame () {
   cout << "---------------- Day " << day << " ----------------\n\n";
   cout << "Health - " << health << endl;
   cout << "Stamina - " << stamina << endl << endl;
-  cout << "Continue to day " << day+1 << "?\n\n";
-  cout << "0 - Continue\n";
-  cout << "1 - Return to Main Menu\n\n";
-
-  // Continuing to day 1
-  int continueToNextDay;
-  cin >> continueToNextDay;
-
-  switch (continueToNextDay) {
-    case 0: {
-      int health = health;
-      int stamina = stamina;
-      nextDay();
-      break;
-    }
-    case 1: {
-      menu();
-    }
-  }
+  continueNextDay();
+  
   while (continueToNextDay < 0 || continueToNextDay > 1) {
     cout << "\033[2J\033[0;0H";
     cout << "Please type in a number between 0 and 1 to select an option\n\n";
