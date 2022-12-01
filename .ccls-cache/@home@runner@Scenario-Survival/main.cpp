@@ -27,8 +27,15 @@ int main(){
 // ------------------------------ Instructions ------------------------------
 void instructions () {
   cout << "\033[2J\033[0;0H";
-  cout << "Haha I haven't made the instructions yet hahahahaha\n\n";
-  cout << "Type 0 to return to the main menu";
+  cout << "---------------- Scenario Survival ----------------\n\n";
+  cout << "In Scenario Survival, your goal is to survive as long as possible while maintaining your stamina. When you begin the game, you will recieve a random scenario and actions to choose from. These actions will be remembered and will either help or hurt you later on. The game ends when your health reaches 0.\n\n";
+  cout << "Health:\n";
+  cout << "Your health is an essential part of the game. If your health drops to 0, you die and lose the game. You can lose and regain health in several scenarios.\n\n";
+  cout << "Stamina:\n";
+  cout << "Your stamina is another important factor to take into consideration while in the game. Certain actions take up stamina or can replenish it. Depending on your stamina levels, some actions may not be available. If your stamina runs out, your character passes out for a day and you miss being able to act on a scenario. Because of this, you have a large chance of losing the game if this happens.\n\n";
+  cout << "Scenarios:\n";
+  cout << "Scenarios are the most important part of Scenario Survival. Every day, you will recieve a random scenario along with serveral related actions to choose from. Depending on which action you choose, your health and/or stamina may be affected in a good or bad way.\n\n";
+  cout << "Type 0 to return to the main menu\n";
   
   int returnToMenu;
   cin >> returnToMenu;
