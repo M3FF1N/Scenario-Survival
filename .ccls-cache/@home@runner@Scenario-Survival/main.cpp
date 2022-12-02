@@ -13,6 +13,7 @@ void startGame();
 void instructions();
 void continueNextDay();
 void nextDay();
+void gameOver();
 int exit();
 int health = 16;
 int stamina = 16;
@@ -26,7 +27,7 @@ int main(){
   return 0;
 }
 
-// Continuing to next day
+// ------------------------------ Continuing To Next Day ------------------------------
 void continueNextDay () {
   cout << "Continue to day " << day+1 << "?\n\n";
   cout << "0 - Continue\n";
@@ -54,6 +55,10 @@ void continueNextDay () {
     }
   }
 };
+// ------------------------------ Game Over ------------------------------
+void gameOver() {
+  
+}
 // ------------------------------ Instructions ------------------------------
 void instructions () {
   cout << "\033[2J\033[0;0H";
@@ -222,26 +227,36 @@ void startGame () {
 
 // ------------------------------ Moving on to the next day ------------------------------
 void nextDay () {
-  day++;
-  cout << "\033[2J\033[0;0H";
-  cout << "---------------- Day " << day << " ----------------\n\n";
-  cout << "Health - " << health << endl;
-  cout << "Stamina - " << stamina << endl << endl;
-  
-  // Scenario Select
-  int scenarios[2] = {0, 1};
-  
-  srand((unsigned)time(0));
-  int scenario = rand()%2;
-  
-  switch (scenario) {
-    case 0: {
-      scenario_zombieAttack();
-      break;
-    }
-    case 1: {
-      scenario_zombieAttack();
-      break;
+  if (health <= 0) {
+    cout << "\033[2J\033[0;0H";
+    cout << "---------------- GAME OVER ----------------\n\n";
+    cout << "You died! Survived for " << day << " days\n\n";
+    cout << "Play again?\n\n";
+    cout << "0 - Play Again\n";
+    cout << "1 - Return to Main Menu\n\n";
+  }
+  else {
+    day++;
+    cout << "\033[2J\033[0;0H";
+    cout << "---------------- Day " << day << " ----------------\n\n";
+    cout << "Health - " << health << endl;
+    cout << "Stamina - " << stamina << endl << endl;
+      
+    // Scenario Select
+    int scenarios[2] = {0, 1};
+    
+    srand((unsigned)time(0));
+    int scenario = rand()%2;
+    
+    switch (scenario) {
+      case 0: {
+        scenario_zombieAttack();
+        break;
+      }
+      case 1: {
+        scenario_zombieAttack();
+        break;
+      }
     }
   }
 }
