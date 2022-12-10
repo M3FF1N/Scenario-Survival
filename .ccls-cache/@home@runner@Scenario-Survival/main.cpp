@@ -1,10 +1,6 @@
 #include <iostream>
 #include <string>
 #include <stdlib.h>
-#include <cstdlib> 
-#include <ctime> 
-#include <iostream>
-#include <vector>
 using namespace std;
 
 // ------------------------------ Functions / Variables ------------------------------
@@ -112,6 +108,14 @@ void action_runAway() {
   cout << "Health - " << health << endl;
   cout << "Stamina - " << stamina << endl << endl;
   
+  stamina = stamina - 4;
+  
+  cout << "You run away from the zombies as fast as you can!\n\n";
+  cout << "You lose 4 stamina points from your sprint.\n\n";
+  cout << "After Scenario:\n\n";
+  cout << "Health - " << health << endl;
+  cout << "Stamina - " << stamina << endl << endl;
+  continueNextDay();
 }
 // Stay Put Action
 void action_stayPut() {
@@ -120,6 +124,12 @@ void action_stayPut() {
   cout << "Health - " << health << endl;
   cout << "Stamina - " << stamina << endl << endl;
   
+  cout << "You stay put and nevoursly watch the zombies wander closer to your location...\n\n";
+  cout << "Your health and stamina stay put as well.\n\n";
+  cout << "After Scenario:\n\n";
+  cout << "Health - " << health << endl;
+  cout << "Stamina - " << stamina << endl << endl;
+  continueNextDay();
 }
 
 // ------------------------------ Scenarios ------------------------------
@@ -157,7 +167,7 @@ void scenario_findChest() {
   cout << "You explore around the area and find an unlocked chest!\n\n";
   cout << "What will you do?\n\n";
   cout << "0 - Open the chest\n";
-  cout << "1 - Leave the chest\n";
+  cout << "1 - Flee the area\n";
   cout << "2 - Check for traps\n\n";
 };
 
@@ -254,7 +264,7 @@ void nextDay () {
         break;
       }
       case 1: {
-        scenario_zombieAttack();
+        scenario_findChest();
         break;
       }
     }
